@@ -85,6 +85,9 @@ Submit (scoring):
 ## Postman Notes
 - Karena routing pakai `shallow()`, update/delete passage **bukan** `PUT /api/tests/{{test_id}}/passages/{{passage_id}}`, tapi `PUT /api/passages/{{passage_id}}`.
 
+dokumentasi dari seluruh endpoint ada di tools posman link di bawah ini : 
+https://www.postman.com/maintenance-cosmologist-75316120/workspace/intern
+
 
 ## Penggunaan AI & Prompt Log 
 Dalam pengerjaan project ini saya menggunakan bantuan AI (mis. ChatGPT). Sesuai requirement assessment, **seluruh prompt yang digunakan wajib dicantumkan lengkap** dalam dokumentasi.
