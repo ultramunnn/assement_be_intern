@@ -12,11 +12,13 @@
 Backend untuk study case latihan soal IELTS Reading (Test → Passage → Question → Option) + submission jawaban user (Attempt → Answer) dan perhitungan skor.
 
 ## Tech Stack
+
 - Laravel (REST API)
 - Laravel Sanctum (token-based authentication)
 - Spatie Laravel Permission (RBAC: admin/user)
 
 ## Quick Start (Local)
+
 1. Install dependency: `composer install`
 2. Setup env: copy `.env.example` → `.env`
 3. Generate key: `php artisan key:generate`
@@ -24,20 +26,29 @@ Backend untuk study case latihan soal IELTS Reading (Test → Passage → Questi
 5. Run server: `php artisan serve`
 
 Seeded accounts (password default dari `UserFactory`: `password`):
+
 - User: `test@example.com`
 - Admin: `admin@example.com`
 
+## Database Diagram
+
+![Database schema](docs/be_intern.png)
+
 ## Base URL
+
 - `http://127.0.0.1:8000`
 - Semua endpoint API berada di prefix: `/api`
 
 ## API Endpoints (Ringkas)
+
 Auth:
+
 - `POST /api/register`
 - `POST /api/login`
 - `POST /api/logout` (auth)
 
 Tests:
+
 - `GET /api/tests` (auth)
 - `GET /api/tests/{{test_id}}` (auth)
 - `POST /api/tests` (admin)
@@ -45,6 +56,7 @@ Tests:
 - `DELETE /api/tests/{{test_id}}` (admin)
 
 Passages (nested + shallow):
+
 - `GET /api/tests/{{test_id}}/passages` (auth)
 - `POST /api/tests/{{test_id}}/passages` (admin)
 - `GET /api/passages/{{passage_id}}` (auth)
@@ -52,6 +64,7 @@ Passages (nested + shallow):
 - `DELETE /api/passages/{{passage_id}}` (admin)
 
 Questions (nested + shallow):
+
 - `GET /api/passages/{{passage_id}}/questions` (auth)
 - `POST /api/passages/{{passage_id}}/questions` (admin)
 - `GET /api/questions/{{question_id}}` (auth)
@@ -59,6 +72,7 @@ Questions (nested + shallow):
 - `DELETE /api/questions/{{question_id}}` (admin)
 
 Options (nested + shallow):
+
 - `GET /api/questions/{{question_id}}/options` (auth)
 - `POST /api/questions/{{question_id}}/options` (admin)
 - `GET /api/options/{{option_id}}` (auth)
@@ -66,6 +80,7 @@ Options (nested + shallow):
 - `DELETE /api/options/{{option_id}}` (admin)
 
 Attempts:
+
 - `GET /api/attempts` (auth; user hanya milik sendiri, admin lihat semua)
 - `POST /api/attempts` (auth)
 - `GET /api/attempts/{{attempt_id}}` (auth; ownership)
@@ -73,6 +88,7 @@ Attempts:
 - `DELETE /api/attempts/{{attempt_id}}` (auth; ownership)
 
 Answers:
+
 - `GET /api/attempts/{{attempt_id}}/answers` (auth; ownership)
 - `POST /api/attempts/{{attempt_id}}/answers` (auth; ownership)
 - `GET /api/answers/{{answer_id}}` (auth; ownership)
@@ -80,20 +96,21 @@ Answers:
 - `DELETE /api/answers/{{answer_id}}` (auth; ownership)
 
 Submit (scoring):
+
 - `POST /api/tests/{{test_id}}/submit` (auth) → simpan `user_attempts` + `user_answers` dan return `total_score`
 
 ## Postman Notes
+
 - Karena routing pakai `shallow()`, update/delete passage **bukan** `PUT /api/tests/{{test_id}}/passages/{{passage_id}}`, tapi `PUT /api/passages/{{passage_id}}`.
 
-dokumentasi dari seluruh endpoint ada di tools posman link di bawah ini : 
+dokumentasi dari seluruh endpoint ada di tools posman link di bawah ini :
 https://www.postman.com/maintenance-cosmologist-75316120/workspace/intern
 
+## Penggunaan AI & Prompt Log
 
-## Penggunaan AI & Prompt Log 
 Dalam pengerjaan project ini saya menggunakan bantuan AI (mis. ChatGPT). Sesuai requirement assessment, **seluruh prompt yang digunakan wajib dicantumkan lengkap** dalam dokumentasi.
 
 - Prompt log disimpan di: `docs/AI_PROMPTS.md`
-
 
 ## License
 
